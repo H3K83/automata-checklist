@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html class="h-100" lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NieR: Automata Checklist ver0.2a - Endings</title>
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+  <body class="h-100 overflow-hidden">
+    <div class="h-100 d-flex flex-column">
+      <nav class="navbar border-bottom border-tertiary border-decoration-bottom pt-4 pb-3">
+        <div class="container-fluid px-4 px-md-5">
+          <div class="border-decoration-start d-flex flex-row w-100">
+            <button type="button" id="nav-scroll-left" class="btn btn-scroll d-xl-none me-2 me-xxl-4"><i class="button-scroll-icon"></i></button>
+            <div class="overflow-x-auto overflow-y-hidden" id="main-nav">
+              <ul class="navbar-nav flex-row">
+                <li class="nav-item pe-2 pe-xxl-4">
+                  <a class="nav-link" href="index.html"><span>Home</span></a>
+                </li>
+                <li class="nav-item pe-2 pe-xxl-4">
+                  <a class="nav-link" href="quests.html"><span>Quests</span></a>
+                </li>
+                <li class="nav-item pe-2 pe-xxl-4">
+                  <a class="nav-link" href="items.html"><span>Items</span></a>
+                </li>
+                <li class="nav-item pe-2 pe-xxl-4">
+                  <a class="nav-link" href="weapons.html"><span>Weapons</span></a>
+                </li>
+                <li class="nav-item pe-2 pe-xxl-4">
+                  <a class="nav-link" href="skills.html"><span>Skills</span></a>
+                </li>
+                <li class="nav-item pe-2 pe-xxl-4">
+                  <a class="nav-link" href="intel.html"><span>Intel</span></a>
+                </li>
+                <li class="nav-item pe-2 pe-xxl-4">
+                  <a class="nav-link active" href="endings.html"><span>Endings</span></a>
+                </li>
+                <li class="nav-item pe-2 pe-xxl-4">
+                  <a class="nav-link" href="achievements.html"><span>Achievements</span></a>
+                </li>
+                <li class="nav-item d-none pe-2 pe-xxl-4">
+                  <a class="nav-link" href="settings.html"><span>Settings</span></a>
+                </li>
+              </ul>
+            </div>
+            <button type="button" id="nav-scroll-right" class="btn btn-scroll d-xl-none me-2 me-xxl-4"><i class="button-scroll-icon rotated"></i></button>
+          </div>
+        </div>
+      </nav>
+      <div class="container-fluid d-flex flex-column flex-grow-1 px-4 px-md-5 py-5 pt-4 pb-0">
+        <h1 class="fw-light pb-4 text-shadow">NieR: Automata Checklist ver0.2a<span class="fs-5 ms-3">- Endings</span></h1>
+        <div class="container-fluid flex-grow-1 p-0">
+          <div class="row gx-5 gy-4 h-100 position-relative">
+            <div class="col-12 col-lg-6 col-xxl-4">
+              <div class="border-decoration-start h-100">
+                <div class="card box-highlight h-100">
+                  <div class="card-body ps-0">
+                    <i class="card-decoration-top"></i>
+                    <div class="card-text h-100 position-relative" data-overlayscrollbars-initialize>
+                      <div class="pe-3 position-absolute w-100">
+                        <div class="accordion accordion-flush" id="list"></div>
+                      </div>
+                    </div>
+                    <i class="card-decoration-bottom"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-lg-6 col-xxl-4" id="list-info"></div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid border-bottom border-tertiary border-decoration-bottom mb-5 p-0 pb-3">
+        <div class="row g-0 px-4 px-md-5">
+          <div class="col-12">
+            <div class="card box-highlight m-0" id="footer">
+              <div class="card-body">
+                <p class="card-text">NieR is a registered trademark of SQUARE ENIX CO., LTD. This website was designed by <a href="https://github.com/H3K83" target="_blank" title="Hekate">Hekate</a> and is licensed under a Creative Commons <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-No Derivatives 4.0 International">BY-NC-ND 4.0 International License</a>.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/overlayscrollbars.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script>
+      //Dynamically Load Content
+      const list = document.querySelector("#list");
+      ((data) => {
+        const chunk = data
+          .map(
+            (item) =>
+              `<div class="accordion-item">
+                            <h2 class="accordion-header" id="list-title-${item.number}">
+                              <button class="accordion-button ${item.btncollapse}" type="button" data-bs-toggle="collapse" data-bs-target="#list-group-${item.number}" aria-expanded=" ${item.expanded}" aria-controls="list-group-${item.number}"><span class="text-truncate">${item.name}</span></button>
+                            </h2>
+                            <div id="list-group-${item.number}" class="accordion-collapse collapse ${item.collapse}" aria-labelledby="list-title-${item.number}" data-bs-parent="#list">
+                              <ul class="list-group list-group-flush"></ul>
+                            </div>
+                          </div>`
+          )
+          .join("");
+        const range = document.createRange();
+        range.selectNode(list);
+        const fragment = range.createContextualFragment(chunk);
+        list.appendChild(fragment);
+      })([
+        { number: "1", name: "Route A", btncollapse: "", collapse: "show", expanded: "true" },
+        { number: "2", name: "Route B", btncollapse: "collapsed", collapse: "", expanded: "false" },
+        { number: "3", name: "Route C & D", btncollapse: "collapsed", collapse: "", expanded: "false" },
+      ]);
+
+      const itemList = document.querySelector("#list-group-1 > .list-group");
+      ((data) => {
+        const chunk = data.map((item) => `<li class="list-group-item position-relative"><input class="form-check-input me-2" type="checkbox" value="" id="list-checkbox-${item.number}" /><span class="text-truncate ${item.collapsed}" data-bs-toggle="collapse" data-bs-target="#list-item-${item.number}" aria-expanded="${item.expanded}" aria-controls="list-item-${item.number}">${item.name}</span></li>`).join("");
+        const range = document.createRange();
+        range.selectNode(itemList);
+        const fragment = range.createContextualFragment(chunk);
+        itemList.appendChild(fragment);
+      })([
+        {
+          number: "1",
+          name: "Ending A: flower for m[A]chines",
+          collapsed: "",
+          expanded: "true",
+        },
+        {
+          number: "2",
+          name: "Ending H: a mountain too [H]igh",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "3",
+          name: "Ending I: no [I] in team",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "4",
+          name: "Ending J: bad [J]udgement",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "5",
+          name: "Ending K: aji wo [K]utta",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "6",
+          name: "Ending L: [L]one wolf",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "7",
+          name: "Ending N: [N]o Man's Village",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "8",
+          name: "Ending T: fa[T]al error",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "9",
+          name: "Ending U: deb[U]nked",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "10",
+          name: "Ending W: broken [W]ings",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+      ]);
+
+      const itemList2 = document.querySelector("#list-group-2 > .list-group");
+      ((data) => {
+        const chunk = data.map((item) => `<li class="list-group-item position-relative"><input class="form-check-input me-2" type="checkbox" value="" id="list-checkbox-${item.number}" /><span class="text-truncate ${item.collapsed}" data-bs-toggle="collapse" data-bs-target="#list-item-${item.number}" aria-expanded="${item.expanded}" aria-controls="list-item-${item.number}">${item.name}</span></li>`).join("");
+        const range = document.createRange();
+        range.selectNode(itemList2);
+        const fragment = range.createContextualFragment(chunk);
+        itemList2.appendChild(fragment);
+      })([
+        {
+          number: "11",
+          name: "Ending B: or not to [B]e",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "12",
+          name: "Ending F: mission [F]ailed",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "13",
+          name: "Ending G: hun[G]ry for knowledge",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "14",
+          name: "Ending ◬: 3C3C1D119440927",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+      ]);
+
+      const itemList3 = document.querySelector("#list-group-3 > .list-group");
+      ((data) => {
+        const chunk = data.map((item) => `<li class="list-group-item position-relative"><input class="form-check-input me-2" type="checkbox" value="" id="list-checkbox-${item.number}" /><span class="text-truncate ${item.collapsed}" data-bs-toggle="collapse" data-bs-target="#list-item-${item.number}" aria-expanded="${item.expanded}" aria-controls="list-item-${item.number}">${item.name}</span></li>`).join("");
+        const range = document.createRange();
+        range.selectNode(itemList3);
+        const fragment = range.createContextualFragment(chunk);
+        itemList3.appendChild(fragment);
+      })([
+        {
+          number: "15",
+          name: "Ending C: meaningless [C]ode",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "16",
+          name: "Ending D: child[D]hood's end",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "17",
+          name: "Ending E: the [E]nd of yorha",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "18",
+          name: "Ending M: break ti[M]e",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "19",
+          name: "Ending O: just y[O]u and me",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "20",
+          name: "Ending P: corru[P]tion",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "21",
+          name: "Ending Q: [Q]questionable actions",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "22",
+          name: "Ending R: mave[R]ick",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "23",
+          name: "Ending S: city e[S]cape",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "24",
+          name: "Ending V: reckless bra[V]ery",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "25",
+          name: "Ending X: time to rela[X]",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "26",
+          name: "Ending Y: head[Y] battle",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "27",
+          name: "Ending Z: over[Z]ealous",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+      ]);
+
+      const infoList = document.querySelector("#list-info");
+      ((data) => {
+        const chunk = data
+          .map(
+            (item) =>
+              `<div class="card collapse ${item.collapse} h-100" id="list-item-${item.number}" data-bs-parent="#list-info">
+                <div class="card-header"><span class="text-truncate">${item.name}</span><button type="button" class="btn-close d-lg-none ms-auto" data-bs-target="#list-item-${item.number}" data-bs-toggle="collapse" aria-label="Close"></button></div>
+                <div class="card-body">
+                  <i class="card-decoration-top"></i>
+                  <div class="card-text h-100 position-relative" data-overlayscrollbars-initialize>
+                    <div class="pe-3 position-absolute w-100">
+                      <p data-note="${item.note}">${item.info}</p>
+                    </div>
+                  </div>
+                  <i class="card-decoration-bottom"></i>
+                </div>
+              </div>`
+          )
+          .join("");
+        const range = document.createRange();
+        range.selectNode(infoList);
+        const fragment = range.createContextualFragment(chunk);
+        infoList.appendChild(fragment);
+      })([
+        {
+          number: "1",
+          name: "Ending A: flower for m[A]chines",
+          note: "",
+          info: "No information available.",
+          collapse: "show",
+        },
+        {
+          number: "2",
+          name: "Ending H: a mountain too [H]igh",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "3",
+          name: "Ending I: no [I] in team",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "4",
+          name: "Ending J: bad [J]udgement",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "5",
+          name: "Ending K: aji wo [K]utta",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "6",
+          name: "Ending L: [L]one wolf",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "7",
+          name: "Ending N: [N]o Man's Village",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "8",
+          name: "Ending T: fa[T]al error",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "9",
+          name: "Ending U: deb[U]nked",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "10",
+          name: "Ending W: broken [W]ings",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "11",
+          name: "Ending B: or not to [B]e",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "12",
+          name: "Ending F: mission [F]ailed",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "13",
+          name: "Ending G: hun[G]ry for knowledge",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "14",
+          name: "Ending ◬: 3C3C1D119440927",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "15",
+          name: "Ending C: meaningless [C]ode",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "16",
+          name: "Ending D: child[D]hood's end",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "17",
+          name: "Ending E: the [E]nd of yorha",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "18",
+          name: "Ending M: break ti[M]e",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "19",
+          name: "Ending O: just y[O]u and me",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "20",
+          name: "Ending P: corru[P]tion",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "21",
+          name: "Ending Q: [Q]questionable actions",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "22",
+          name: "Ending R: mave[R]ick",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "23",
+          name: "Ending S: city e[S]cape",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "24",
+          name: "Ending V: reckless bra[V]ery",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "25",
+          name: "Ending X: time to rela[X]",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "26",
+          name: "Ending Y: head[Y] battle",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "27",
+          name: "Ending Z: over[Z]ealous",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+      ]);
+
+      //Initialize OverlayScrollbars
+      var OverlayScrollbars = OverlayScrollbarsGlobal.OverlayScrollbars;
+      document.querySelectorAll("[data-overlayscrollbars-initialize]").forEach((elm) => {
+        OverlayScrollbars(elm, {
+          overflow: {
+            x: "hidden",
+            y: "scroll",
+          },
+          scrollbars: {
+            theme: "os-theme-automata",
+            visibility: "visible",
+            autoHide: "never",
+            dragScroll: true,
+            clickScroll: true,
+          },
+        });
+      });
+
+      //Navigation Horizontal Scroller
+      const navScrollRight = document.getElementById("nav-scroll-right");
+      const navScrollLeft = document.getElementById("nav-scroll-left");
+      var mainNav = document.getElementById("main-nav");
+
+      navScrollRight.onmousedown = function () {
+        mainNav.scrollLeft += 50;
+      };
+
+      navScrollLeft.onmousedown = function () {
+        mainNav.scrollLeft -= 50;
+      };
+
+      //Save and Load Checkboxes
+      var checkboxValues = JSON.parse(localStorage.getItem("checkboxValues")) || {},
+        $checkboxes = $(".form-check-input");
+
+      $checkboxes.on("change", function () {
+        $checkboxes.each(function () {
+          checkboxValues[this.id] = this.checked;
+        });
+
+        localStorage.setItem("checkboxValues", JSON.stringify(checkboxValues));
+      });
+
+      $.each(checkboxValues, function (key, value) {
+        $("#" + key).prop("checked", value);
+      });
+
+      //Save and Load Text Input
+      const editables = document.querySelectorAll("[contenteditable]");
+
+      editables.forEach((el) => {
+        el.addEventListener("blur", () => {
+          localStorage.setItem("dataStorage-" + el.id, el.innerHTML);
+        });
+      });
+
+      for (var key in localStorage) {
+        if (key.includes("dataStorage-")) {
+          const id = key.replace("dataStorage-", "");
+          document.querySelector("#" + id).innerHTML = localStorage.getItem(key);
+        }
+      }
+    </script>
+  </body>
+</html>

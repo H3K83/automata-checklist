@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html class="h-100" lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NieR: Automata Checklist ver0.2a - Items</title>
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+  <body class="h-100 overflow-hidden">
+    <div class="h-100 d-flex flex-column">
+      <nav class="navbar border-bottom border-tertiary border-decoration-bottom pt-4 pb-3">
+        <div class="container-fluid px-4 px-md-5">
+          <div class="border-decoration-start d-flex flex-row w-100">
+            <button type="button" id="nav-scroll-left" class="btn btn-scroll d-xl-none me-2 me-xxl-4"><i class="button-scroll-icon"></i></button>
+            <div class="overflow-x-auto overflow-y-hidden" id="main-nav">
+              <ul class="navbar-nav flex-row">
+                <li class="nav-item pe-2 pe-xxl-4">
+                  <a class="nav-link" href="index.html"><span>Home</span></a>
+                </li>
+                <li class="nav-item pe-2 pe-xxl-4">
+                  <a class="nav-link" href="quests.html"><span>Quests</span></a>
+                </li>
+                <li class="nav-item pe-2 pe-xxl-4">
+                  <a class="nav-link active" href="items.html"><span>Items</span></a>
+                </li>
+                <li class="nav-item pe-2 pe-xxl-4">
+                  <a class="nav-link" href="weapons.html"><span>Weapons</span></a>
+                </li>
+                <li class="nav-item pe-2 pe-xxl-4">
+                  <a class="nav-link" href="skills.html"><span>Skills</span></a>
+                </li>
+                <li class="nav-item pe-2 pe-xxl-4">
+                  <a class="nav-link" href="intel.html"><span>Intel</span></a>
+                </li>
+                <li class="nav-item pe-2 pe-xxl-4">
+                  <a class="nav-link" href="endings.html"><span>Endings</span></a>
+                </li>
+                <li class="nav-item pe-2 pe-xxl-4">
+                  <a class="nav-link" href="achievements.html"><span>Achievements</span></a>
+                </li>
+                <li class="nav-item d-none pe-2 pe-xxl-4">
+                  <a class="nav-link" href="settings.html"><span>Settings</span></a>
+                </li>
+              </ul>
+            </div>
+            <button type="button" id="nav-scroll-right" class="btn btn-scroll d-xl-none me-2 me-xxl-4"><i class="button-scroll-icon rotated"></i></button>
+          </div>
+        </div>
+      </nav>
+      <div class="container-fluid d-flex flex-column flex-grow-1 px-4 px-md-5 py-5 pt-4 pb-0">
+        <h1 class="fw-light pb-4 text-shadow">NieR: Automata Checklist ver0.2a<span class="fs-5 ms-3">- Items</span></h1>
+        <div class="container-fluid flex-grow-1 p-0">
+          <div class="row gx-5 gy-4 h-100 position-relative">
+            <div class="col-12 col-lg-6 col-xxl-4">
+              <div class="border-decoration-start h-100">
+                <div class="card box-highlight h-100">
+                  <div class="card-body ps-0">
+                    <i class="card-decoration-top"></i>
+                    <div class="card-text h-100 position-relative" data-overlayscrollbars-initialize>
+                      <div class="pe-3 position-absolute w-100">
+                        <div class="accordion accordion-flush" id="list"></div>
+                      </div>
+                    </div>
+                    <i class="card-decoration-bottom"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-lg-6 col-xxl-4" id="list-info"></div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid border-bottom border-tertiary border-decoration-bottom mb-5 p-0 pb-3">
+        <div class="row g-0 px-4 px-md-5">
+          <div class="col-12">
+            <div class="card box-highlight m-0" id="footer">
+              <div class="card-body">
+                <p class="card-text">NieR is a registered trademark of SQUARE ENIX CO., LTD. This website was designed by <a href="https://github.com/H3K83" target="_blank" title="Hekate">Hekate</a> and is licensed under a Creative Commons <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-No Derivatives 4.0 International">BY-NC-ND 4.0 International License</a>.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/overlayscrollbars.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script>
+      //Dynamically Load Content
+      const list = document.querySelector("#list");
+      ((data) => {
+        const chunk = data
+          .map(
+            (item) =>
+              `<div class="accordion-item">
+                            <h2 class="accordion-header" id="list-title-${item.number}">
+                              <button class="accordion-button ${item.btncollapse}" type="button" data-bs-toggle="collapse" data-bs-target="#list-group-${item.number}" aria-expanded=" ${item.expanded}" aria-controls="list-group-${item.number}"><span class="text-truncate">${item.name}</span></button>
+                            </h2>
+                            <div id="list-group-${item.number}" class="accordion-collapse collapse ${item.collapse}" aria-labelledby="list-title-${item.number}" data-bs-parent="#list">
+                              <ul class="list-group list-group-flush"></ul>
+                            </div>
+                          </div>`
+          )
+          .join("");
+        const range = document.createRange();
+        range.selectNode(list);
+        const fragment = range.createContextualFragment(chunk);
+        list.appendChild(fragment);
+      })([{ number: "1", name: "Key Items", btncollapse: "", collapse: "show", expanded: "true" }]);
+
+      const itemList = document.querySelector("#list-group-1 > .list-group");
+      ((data) => {
+        const chunk = data.map((item) => `<li class="list-group-item position-relative"><input class="form-check-input me-2" type="checkbox" value="" id="list-checkbox-${item.number}" /><span class="text-truncate ${item.collapsed}" data-bs-toggle="collapse" data-bs-target="#list-item-${item.number}" aria-expanded="${item.expanded}" aria-controls="list-item-${item.number}">${item.name}</span></li>`).join("");
+        const range = document.createRange();
+        range.selectNode(itemList);
+        const fragment = range.createContextualFragment(chunk);
+        itemList.appendChild(fragment);
+      })([
+        {
+          number: "1",
+          name: "2P's Body Replica",
+          collapsed: "",
+          expanded: "true",
+        },
+        {
+          number: "2",
+          name: "9P's Body Replica",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "3",
+          name: "A2 Wig",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "4",
+          name: "Accounting Book",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "5",
+          name: "Adam's Glasses",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "6",
+          name: "Aged Stick",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "7",
+          name: "Alien Mask",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "8",
+          name: "Ash Grey Hair",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "9",
+          name: "Black Fox Mask",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "10",
+          name: "Black Hair",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "11",
+          name: "Blue Hair",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "12",
+          name: "Blue Ribbon",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "13",
+          name: "Book: &#34;Pensées&#34;",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "14",
+          name: "Broken Toy",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "15",
+          name: "Brown Hair",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "16",
+          name: "Camouflage Goggles",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "17",
+          name: "Cardboard Pod",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "18",
+          name: "Carrier",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "19",
+          name: "CEO Bullets",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "20",
+          name: "Choice Sachet",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "21",
+          name: "Choice Sachet",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "22",
+          name: "Cosmetics",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "23",
+          name: "Destroyer Outfit",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "24",
+          name: "Dietary Goods",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "25",
+          name: "Elevator Key",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "26",
+          name: "Emil Bullets",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "27",
+          name: "Emil Mask",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "28",
+          name: "Emil's Head",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "29",
+          name: "Filthy Mask",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "30",
+          name: "Forest Access Key",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "31",
+          name: "Fuel Filter",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "32",
+          name: "Golden Hair",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "33",
+          name: "Green Hair",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "34",
+          name: "Grimoire Weiss",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "35",
+          name: "Heavy Armor A",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "36",
+          name: "Heavy Armor B",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "37",
+          name: "Jean-Paul's Letter",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "38",
+          name: "Light Blue Hair",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "39",
+          name: "Light Purple Hair",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "40",
+          name: "Lime Green Hair",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "41",
+          name: "Lunar Tear",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "42",
+          name: "Machine Mask",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "43",
+          name: "Machine Part",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "44",
+          name: "Mama",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "45",
+          name: "Man's Journal",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "46",
+          name: "Matsuda Mask",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "47",
+          name: "Medical Journal",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "48",
+          name: "Memory Chip",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "49",
+          name: "Neon Blue Hair",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "50",
+          name: "Neon Green Hair",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "51",
+          name: "Neon Pink Hair",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "52",
+          name: "Neon Purple Hair",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "53",
+          name: "Neon White Hair",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "54",
+          name: "Neon Yellow Hair",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "55",
+          name: "Ocean Access Key",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "56",
+          id: "56",
+          name: "P2's Body Replica",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "57",
+          name: "Park Access Key",
+          info: "Pastel Pink Hair",
+        },
+        {
+          number: "58",
+          name: "Pink Ribbon",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "59",
+          name: "Purple Hair",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "60",
+          name: "Quality Sachet",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "61",
+          name: "Record: 3C3C1D119440927",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "62",
+          name: "Record: CEO",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "63",
+          name: "Red Hair",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "64",
+          name: "Remnant Flower Bauble",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "65",
+          name: "Retro Grey Pod",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "66",
+          name: "Retro Red Pod",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "67",
+          name: "Revealing Outfit",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "68",
+          name: "Sachet",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "69",
+          name: "Sand Mask",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "70",
+          name: "Sato Mask",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "71",
+          name: "Small Shoe",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "72",
+          name: "Sound Data 1",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "73",
+          name: "Sound Data 2",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "74",
+          name: "Sound Data 3",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "75",
+          name: "Sound Data 4",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "76",
+          name: "Sound Data 5",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "77",
+          name: "Stamp",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "78",
+          name: "Stamp Card",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "79",
+          name: "Statue of a Girl",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "80",
+          name: "Toothbrush",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "81",
+          name: "Under the Moon Bauble",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "82",
+          name: "Valve: Both Eyes",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "83",
+          name: "Valve: Head",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "84",
+          name: "Valve: Left Eye",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "85",
+          name: "Valve: Right Eye",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "86",
+          name: "White Fox Mask",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "87",
+          name: "White Hair",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "88",
+          name: "Writing Implement",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "89",
+          name: "YoRHa Uniform 1",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "90",
+          name: "YoRHa Uniform 2",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "91",
+          name: "YoRHa Uniform Prototype",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "92",
+          name: "Young Man's Outfit",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+      ]);
+
+      const infoList = document.querySelector("#list-info");
+      ((data) => {
+        const chunk = data
+          .map(
+            (item) =>
+              `<div class="card collapse ${item.collapse} h-100" id="list-item-${item.number}" data-bs-parent="#list-info">
+                <div class="card-header"><span class="text-truncate">${item.name}</span><button type="button" class="btn-close d-lg-none ms-auto" data-bs-target="#list-item-${item.number}" data-bs-toggle="collapse" aria-label="Close"></button></div>
+                <div class="card-body">
+                  <i class="card-decoration-top"></i>
+                  <div class="card-text h-100 position-relative" data-overlayscrollbars-initialize>
+                    <div class="pe-3 position-absolute w-100">
+                      <p data-note="${item.note}">${item.info}</p>
+                    </div>
+                  </div>
+                  <i class="card-decoration-bottom"></i>
+                </div>
+              </div>`
+          )
+          .join("");
+        const range = document.createRange();
+        range.selectNode(infoList);
+        const fragment = range.createContextualFragment(chunk);
+        infoList.appendChild(fragment);
+      })([
+        {
+          number: "1",
+          name: "2P's Body Replica",
+          note: "",
+          info: "No information available.",
+          collapse: "show",
+        },
+        {
+          number: "2",
+          name: "9P's Body Replica",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "3",
+          name: "A2 Wig",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "4",
+          name: "Accounting Book",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "5",
+          name: "Adam's Glasses",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "6",
+          name: "Aged Stick",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "7",
+          name: "Alien Mask",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "8",
+          name: "Ash Grey Hair",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "9",
+          name: "Black Fox Mask",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "10",
+          name: "Black Hair",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "11",
+          name: "Blue Hair",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "12",
+          name: "Blue Ribbon",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "13",
+          name: "Book: &#34;Pensées&#34;",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "14",
+          name: "Broken Toy",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "15",
+          name: "Brown Hair",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "16",
+          name: "Camouflage Goggles",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "17",
+          name: "Cardboard Pod",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "18",
+          name: "Carrier",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "19",
+          name: "CEO Bullets",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "20",
+          name: "Choice Sachet",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "21",
+          name: "Choice Sachet",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "22",
+          name: "Cosmetics",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "23",
+          name: "Destroyer Outfit",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "24",
+          name: "Dietary Goods",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "25",
+          name: "Elevator Key",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "26",
+          name: "Emil Bullets",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "27",
+          name: "Emil Mask",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "28",
+          name: "Emil's Head",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "29",
+          name: "Filthy Mask",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "30",
+          name: "Forest Access Key",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "31",
+          name: "Fuel Filter",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "32",
+          name: "Golden Hair",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "33",
+          name: "Green Hair",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "34",
+          name: "Grimoire Weiss",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "35",
+          name: "Heavy Armor A",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "36",
+          name: "Heavy Armor B",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "37",
+          name: "Jean-Paul's Letter",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "38",
+          name: "Light Blue Hair",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "39",
+          name: "Light Purple Hair",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "40",
+          name: "Lime Green Hair",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "41",
+          name: "Lunar Tear",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "42",
+          name: "Machine Mask",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "43",
+          name: "Machine Part",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "44",
+          name: "Mama",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "45",
+          name: "Man's Journal",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "46",
+          name: "Matsuda Mask",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "47",
+          name: "Medical Journal",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "48",
+          name: "Memory Chip",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "49",
+          name: "Neon Blue Hair",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "50",
+          name: "Neon Green Hair",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "51",
+          name: "Neon Pink Hair",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "52",
+          name: "Neon Purple Hair",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "53",
+          name: "Neon White Hair",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "54",
+          name: "Neon Yellow Hair",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "55",
+          name: "Ocean Access Key",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "56",
+          id: "56",
+          name: "P2's Body Replica",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "57",
+          name: "Park Access Key",
+          info: "Pastel Pink Hair",
+        },
+        {
+          number: "58",
+          name: "Pink Ribbon",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "59",
+          name: "Purple Hair",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "60",
+          name: "Quality Sachet",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "61",
+          name: "Record: 3C3C1D119440927",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "62",
+          name: "Record: CEO",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "63",
+          name: "Red Hair",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "64",
+          name: "Remnant Flower Bauble",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "65",
+          name: "Retro Grey Pod",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "66",
+          name: "Retro Red Pod",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "67",
+          name: "Revealing Outfit",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "68",
+          name: "Sachet",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "69",
+          name: "Sand Mask",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "70",
+          name: "Sato Mask",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "71",
+          name: "Small Shoe",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "72",
+          name: "Sound Data 1",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "73",
+          name: "Sound Data 2",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "74",
+          name: "Sound Data 3",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "75",
+          name: "Sound Data 4",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "76",
+          name: "Sound Data 5",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "77",
+          name: "Stamp",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "78",
+          name: "Stamp Card",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "79",
+          name: "Statue of a Girl",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "80",
+          name: "Toothbrush",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "81",
+          name: "Under the Moon Bauble",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "82",
+          name: "Valve: Both Eyes",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "83",
+          name: "Valve: Head",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "84",
+          name: "Valve: Left Eye",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "85",
+          name: "Valve: Right Eye",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "86",
+          name: "White Fox Mask",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "87",
+          name: "White Hair",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "88",
+          name: "Writing Implement",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "89",
+          name: "YoRHa Uniform 1",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "90",
+          name: "YoRHa Uniform 2",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "91",
+          name: "YoRHa Uniform Prototype",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+        {
+          number: "92",
+          name: "Young Man's Outfit",
+          note: "",
+          info: "No information available.",
+          collapse: "",
+        },
+      ]);
+
+      //Initialize OverlayScrollbars
+      var OverlayScrollbars = OverlayScrollbarsGlobal.OverlayScrollbars;
+      document.querySelectorAll("[data-overlayscrollbars-initialize]").forEach((elm) => {
+        OverlayScrollbars(elm, {
+          overflow: {
+            x: "hidden",
+            y: "scroll",
+          },
+          scrollbars: {
+            theme: "os-theme-automata",
+            visibility: "visible",
+            autoHide: "never",
+            dragScroll: true,
+            clickScroll: true,
+          },
+        });
+      });
+
+      //Navigation Horizontal Scroller
+      const navScrollRight = document.getElementById("nav-scroll-right");
+      const navScrollLeft = document.getElementById("nav-scroll-left");
+      var mainNav = document.getElementById("main-nav");
+
+      navScrollRight.onmousedown = function () {
+        mainNav.scrollLeft += 50;
+      };
+
+      navScrollLeft.onmousedown = function () {
+        mainNav.scrollLeft -= 50;
+      };
+
+      //Save and Load Checkboxes
+      var checkboxValues = JSON.parse(localStorage.getItem("checkboxValues")) || {},
+        $checkboxes = $(".form-check-input");
+
+      $checkboxes.on("change", function () {
+        $checkboxes.each(function () {
+          checkboxValues[this.id] = this.checked;
+        });
+
+        localStorage.setItem("checkboxValues", JSON.stringify(checkboxValues));
+      });
+
+      $.each(checkboxValues, function (key, value) {
+        $("#" + key).prop("checked", value);
+      });
+
+      //Save and Load Text Input
+      const editables = document.querySelectorAll("[contenteditable]");
+
+      editables.forEach((el) => {
+        el.addEventListener("blur", () => {
+          localStorage.setItem("dataStorage-" + el.id, el.innerHTML);
+        });
+      });
+
+      for (var key in localStorage) {
+        if (key.includes("dataStorage-")) {
+          const id = key.replace("dataStorage-", "");
+          document.querySelector("#" + id).innerHTML = localStorage.getItem(key);
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html class="h-100" lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NieR: Automata Checklist ver0.2a - Achievements</title>
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+  <body class="h-100 overflow-hidden">
+    <div class="h-100 d-flex flex-column">
+      <nav class="navbar border-bottom border-tertiary border-decoration-bottom pt-4 pb-3">
+        <div class="container-fluid px-4 px-md-5">
+          <div class="border-decoration-start d-flex flex-row w-100">
+            <button type="button" id="nav-scroll-left" class="btn btn-scroll d-xl-none me-2 me-xxl-4"><i class="button-scroll-icon"></i></button>
+            <div class="overflow-x-auto overflow-y-hidden" id="main-nav">
+              <ul class="navbar-nav flex-row">
+                <li class="nav-item pe-2 pe-xxl-4">
+                  <a class="nav-link" href="index.html"><span>Home</span></a>
+                </li>
+                <li class="nav-item pe-2 pe-xxl-4">
+                  <a class="nav-link" href="quests.html"><span>Quests</span></a>
+                </li>
+                <li class="nav-item pe-2 pe-xxl-4">
+                  <a class="nav-link" href="items.html"><span>Items</span></a>
+                </li>
+                <li class="nav-item pe-2 pe-xxl-4">
+                  <a class="nav-link" href="weapons.html"><span>Weapons</span></a>
+                </li>
+                <li class="nav-item pe-2 pe-xxl-4">
+                  <a class="nav-link" href="skills.html"><span>Skills</span></a>
+                </li>
+                <li class="nav-item pe-2 pe-xxl-4">
+                  <a class="nav-link" href="intel.html"><span>Intel</span></a>
+                </li>
+                <li class="nav-item pe-2 pe-xxl-4">
+                  <a class="nav-link" href="endings.html"><span>Endings</span></a>
+                </li>
+                <li class="nav-item pe-2 pe-xxl-4">
+                  <a class="nav-link active" href="achievements.html"><span>Achievements</span></a>
+                </li>
+                <li class="nav-item d-none pe-2 pe-xxl-4">
+                  <a class="nav-link" href="settings.html"><span>Settings</span></a>
+                </li>
+              </ul>
+            </div>
+            <button type="button" id="nav-scroll-right" class="btn btn-scroll d-xl-none me-2 me-xxl-4"><i class="button-scroll-icon rotated"></i></button>
+          </div>
+        </div>
+      </nav>
+      <div class="container-fluid d-flex flex-column flex-grow-1 px-4 px-md-5 py-5 pt-4 pb-0">
+        <h1 class="fw-light pb-4 text-shadow">NieR: Automata Checklist ver0.2a<span class="fs-5 ms-3">- Achievements</span></h1>
+        <div class="container-fluid flex-grow-1 p-0">
+          <div class="row gx-5 gy-4 h-100 position-relative">
+            <div class="col-12 col-lg-6 col-xxl-4">
+              <div class="border-decoration-start h-100">
+                <div class="card box-highlight h-100">
+                  <div class="card-body ps-0">
+                    <i class="card-decoration-top"></i>
+                    <div class="card-text h-100 position-relative" data-overlayscrollbars-initialize>
+                      <div class="pe-3 position-absolute w-100">
+                        <div class="accordion accordion-flush" id="list"></div>
+                      </div>
+                    </div>
+                    <i class="card-decoration-bottom"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-lg-6 col-xxl-4" id="list-info"></div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid border-bottom border-tertiary border-decoration-bottom mb-5 p-0 pb-3">
+        <div class="row g-0 px-4 px-md-5">
+          <div class="col-12">
+            <div class="card box-highlight m-0" id="footer">
+              <div class="card-body">
+                <p class="card-text">NieR is a registered trademark of SQUARE ENIX CO., LTD. This website was designed by <a href="https://github.com/H3K83" target="_blank" title="Hekate">Hekate</a> and is licensed under a Creative Commons <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-No Derivatives 4.0 International">BY-NC-ND 4.0 International License</a>.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/overlayscrollbars.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script>
+      //Dynamically Load Content
+      const list = document.querySelector("#list");
+      ((data) => {
+        const chunk = data
+          .map(
+            (item) =>
+              `<div class="accordion-item">
+                            <h2 class="accordion-header" id="list-title-${item.number}">
+                              <button class="accordion-button ${item.btncollapse}" type="button" data-bs-toggle="collapse" data-bs-target="#list-group-${item.number}" aria-expanded=" ${item.expanded}" aria-controls="list-group-${item.number}"><span class="text-truncate">${item.name}</span></button>
+                            </h2>
+                            <div id="list-group-${item.number}" class="accordion-collapse collapse ${item.collapse}" aria-labelledby="list-title-${item.number}" data-bs-parent="#list">
+                              <ul class="list-group list-group-flush"></ul>
+                            </div>
+                          </div>`
+          )
+          .join("");
+        const range = document.createRange();
+        range.selectNode(list);
+        const fragment = range.createContextualFragment(chunk);
+        list.appendChild(fragment);
+      })([
+        { number: "1", name: "Route A", btncollapse: "", collapse: "show", expanded: "true" },
+        { number: "2", name: "Route B", btncollapse: "collapsed", collapse: "", expanded: "false" },
+        { number: "3", name: "Route C & D", btncollapse: "collapsed", collapse: "", expanded: "false" },
+      ]);
+
+      const itemList = document.querySelector("#list-group-1 > .list-group");
+      ((data) => {
+        const chunk = data.map((item) => `<li class="list-group-item position-relative"><input class="form-check-input me-2" type="checkbox" value="" id="list-checkbox-${item.number}" /><span class="text-truncate ${item.collapsed}" data-bs-toggle="collapse" data-bs-target="#list-item-${item.number}" aria-expanded="${item.expanded}" aria-controls="list-item-${item.number}">${item.name}</span></li>`).join("");
+        const range = document.createRange();
+        range.selectNode(itemList);
+        const fragment = range.createContextualFragment(chunk);
+        itemList.appendChild(fragment);
+      })([
+        {
+          number: "1",
+          name: "Resuscitated Body",
+          collapsed: "",
+          expanded: "true",
+        },
+        {
+          number: "2",
+          name: "What Are You Doing?",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "3",
+          name: "Vestiges of Prosperity",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "4",
+          name: "The Circle of Death",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "5",
+          name: "First Errand",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "6",
+          name: "Animal Rider",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "7",
+          name: "It's a Healthy Baby Boy!",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "8",
+          name: "Wait! Don't Kill Me!",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "9",
+          name: "We Await Your Next Visit",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "10",
+          name: "Desire Without Emotion",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "11",
+          name: "Pod Hunter",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "12",
+          name: "A Round by the Pond",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "13",
+          name: "Creation and Insurrection",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "14",
+          name: "The Mechanical Kingdom",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "15",
+          name: "Chip Collector",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "16",
+          name: "Come Take A Look!",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "17",
+          name: "Cherish Our Resources",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "18",
+          name: "Ruler of the Skies",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "19",
+          name: "Ruler of the Deep",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "20",
+          name: "Those Who Love Humans",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "21",
+          name: "Harvest King",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "22",
+          name: "Iron Soul",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "23",
+          name: "One Battle Ends",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+      ]);
+
+      const itemList2 = document.querySelector("#list-group-2 > .list-group");
+      ((data) => {
+        const chunk = data.map((item) => `<li class="list-group-item position-relative"><input class="form-check-input me-2" type="checkbox" value="" id="list-checkbox-${item.number}" /><span class="text-truncate ${item.collapsed}" data-bs-toggle="collapse" data-bs-target="#list-item-${item.number}" aria-expanded="${item.expanded}" aria-controls="list-item-${item.number}">${item.name}</span></li>`).join("");
+        const range = document.createRange();
+        range.selectNode(itemList2);
+        const fragment = range.createContextualFragment(chunk);
+        itemList2.appendChild(fragment);
+      })([
+        {
+          number: "24",
+          name: "Fighting's Not My Thing",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "25",
+          name: "Tools of the Trade",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "27",
+          name: "A Scanner's Power",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "28",
+          name: "Not That I Mind...",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "29",
+          name: "Machines vs. Machines",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "30",
+          name: "Lunar Tear",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "31",
+          name: "The Mercenary",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "32",
+          name: "A New Battle Begins",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+      ]);
+
+      const itemList3 = document.querySelector("#list-group-3 > .list-group");
+      ((data) => {
+        const chunk = data.map((item) => `<li class="list-group-item position-relative"><input class="form-check-input me-2" type="checkbox" value="" id="list-checkbox-${item.number}" /><span class="text-truncate ${item.collapsed}" data-bs-toggle="collapse" data-bs-target="#list-item-${item.number}" aria-expanded="${item.expanded}" aria-controls="list-item-${item.number}">${item.name}</span></li>`).join("");
+        const range = document.createRange();
+        range.selectNode(itemList3);
+        const fragment = range.createContextualFragment(chunk);
+        itemList3.appendChild(fragment);
+      })([
+        {
+          number: "33",
+          name: "Final Wish",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "34",
+          name: "Treacherous Blade",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "35",
+          name: "The Power of Hate",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "36",
+          name: "Weapons Maniac",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "37",
+          name: "Farewell, Pascal",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "38",
+          name: "Destruction Is My Job",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "39",
+          name: "Information Master",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "40",
+          name: "Justice",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "41",
+          name: "Crime and Punishment",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "42",
+          name: "Supreme Support Weapons",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "43",
+          name: "Naughty Children",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "44",
+          name: "Inorganic Blade",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "45",
+          name: "Beautiful World",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "46",
+          name: "Leaving for the New World",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "47",
+          name: "The Minds That Emerged",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "48",
+          name: "Transcendent Being",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+        {
+          number: "49",
+          name: "Final Words",
+          collapsed: "collapsed",
+          expanded: "false",
+        },
+      ]);
+
+      const infoList = document.querySelector("#list-info");
+      ((data) => {
+        const chunk = data
+          .map(
+            (item) =>
+              `<div class="card collapse ${item.collapse} h-100" id="list-item-${item.number}" data-bs-parent="#list-info">
+                <div class="card-header"><span class="text-truncate">${item.name}</span><button type="button" class="btn-close d-lg-none ms-auto" data-bs-target="#list-item-${item.number}" data-bs-toggle="collapse" aria-label="Close"></button></div>
+                <div class="card-body">
+                  <i class="card-decoration-top"></i>
+                  <div class="card-text h-100 position-relative" data-overlayscrollbars-initialize>
+                    <div class="pe-3 position-absolute w-100">
+                      <p data-note="${item.note}">${item.info}</p>
+                    </div>
+                  </div>
+                  <i class="card-decoration-bottom"></i>
+                </div>
+              </div>`
+          )
+          .join("");
+        const range = document.createRange();
+        range.selectNode(infoList);
+        const fragment = range.createContextualFragment(chunk);
+        infoList.appendChild(fragment);
+      })([
+        {
+          number: "1",
+          name: "Resuscitated Body",
+          note: "",
+          info: "Play through the main story quest: Reboot.",
+          collapse: "show",
+        },
+        {
+          number: "2",
+          name: "What Are You Doing?",
+          note: "",
+          info: "Look up 2B's skirt 10 times and hold it there until she steps away and the camera resets.",
+          collapse: "",
+        },
+        {
+          number: "3",
+          name: "Vestiges of Prosperity",
+          note: "",
+          info: "Play through the main story quest: Gathering Intel.",
+          collapse: "",
+        },
+        {
+          number: "4",
+          name: "The Circle of Death",
+          note: "",
+          info: "Go back to where you most recently died and recover your body.",
+          collapse: "",
+        },
+        {
+          number: "5",
+          name: "First Errand",
+          note: "",
+          info: "Complete your first side quest.",
+          collapse: "",
+        },
+        {
+          number: "6",
+          name: "Animal Rider",
+          note: "",
+          info: "Using a Satchet and Animal Bait, ride any mountable animal you encounter for 5 kilometers.",
+          collapse: "",
+        },
+        {
+          number: "7",
+          name: "It's a Healthy Baby Boy!",
+          note: "",
+          info: "Beat Adam in the Desert Zone.",
+          collapse: "",
+        },
+        {
+          number: "8",
+          name: "Wait! Don't Kill Me!",
+          note: "",
+          info: "Destroy 10 friendly Machine Lifeforms.",
+          collapse: "",
+        },
+        {
+          number: "9",
+          name: "We Await Your Next Visit",
+          note: "",
+          info: "Beat Simone in the Amusement Park.",
+          collapse: "",
+        },
+        {
+          number: "10",
+          name: "Desire Without Emotion",
+          note: "",
+          info: "Possess all at once 100,000 G.",
+          collapse: "",
+        },
+        {
+          number: "11",
+          name: "Pod Hunter",
+          note: "",
+          info: "Find all three Pods including the one you start with, the one in the Desert Zone and the one in the Flooded City.",
+          collapse: "",
+        },
+        {
+          number: "12",
+          name: "A Round by the Pond",
+          note: "",
+          info: "Catch 20 different kinds of fish, including various non-fish items found while fishing.",
+          collapse: "",
+        },
+        {
+          number: "13",
+          name: "Creation and Insurrection",
+          note: "",
+          info: "Beat Adam and Eve in the Alien Ship.",
+          collapse: "",
+        },
+        {
+          number: "14",
+          name: "The Mechanical Kingdom",
+          note: "",
+          info: "Beat A2 in the Forest Kingdom.",
+          collapse: "",
+        },
+        {
+          number: "15",
+          name: "Chip Collector",
+          note: "",
+          info: "Collect 80% of all of the Plug-In Chips found in the world.",
+          collapse: "",
+        },
+        {
+          number: "16",
+          name: "Come Take A Look!",
+          note: "",
+          info: "Use Emil's shop for the first time by shooting at him as he drives by at various points across the City Ruins.",
+          collapse: "",
+        },
+        {
+          number: "17",
+          name: "Cherish Our Resources",
+          note: "",
+          info: "Recover 100 bodies from around the world.",
+          collapse: "",
+        },
+        {
+          number: "18",
+          name: "Ruler of the Skies",
+          note: "",
+          info: "Destroy 255 enemies while using the flight unit.",
+          collapse: "",
+        },
+        {
+          number: "19",
+          name: "Ruler of the Deep",
+          note: "",
+          info: "Beat Grün in the Flooded City.",
+          collapse: "",
+        },
+        {
+          number: "20",
+          name: "Those Who Love Humans",
+          note: "",
+          info: "Beat Adam in the Copied City.",
+          collapse: "",
+        },
+        {
+          number: "21",
+          name: "Harvest King",
+          note: "",
+          info: "Use the A170: Scanner Pog Program to find 10 hidden objects around the world.",
+          collapse: "",
+        },
+        {
+          number: "22",
+          name: "Iron Soul",
+          note: "",
+          info: "Beat So-Shi in the Abandoned Factory.",
+          collapse: "",
+        },
+        {
+          number: "23",
+          name: "One Battle Ends",
+          note: "",
+          info: "Finish Route A and achieve Ending A.",
+          collapse: "",
+        },
+        {
+          number: "24",
+          name: "Fighting's Not My Thing",
+          note: "",
+          info: "Complete a hacking mini-game as 9S for the first time.",
+          collapse: "",
+        },
+        {
+          number: "25",
+          name: "Tools of the Trade",
+          note: "",
+          info: "Upgrade any single wepaon to max level.",
+          collapse: "",
+        },
+        {
+          number: "27",
+          name: "A Scanner's Power",
+          note: "",
+          info: "Destroy a total of 100 Machine Lifeforms with 9S by hacking them.",
+          collapse: "",
+        },
+        {
+          number: "28",
+          name: "Not That I Mind...",
+          note: "",
+          info: "After self-destructing 9S and blowing his pants off, play while in that state for 1 hour.",
+          collapse: "",
+        },
+        {
+          number: "29",
+          name: "Machines vs. Machines",
+          note: "",
+          info: "Destroy a total of 50 Machine Lifeforms while remotely controlling a Machine Lifeform with 9S.",
+          collapse: "",
+        },
+        {
+          number: "30",
+          name: "Lunar Tear",
+          note: "",
+          info: "Complete the quest Emil's Memories, return to the Commercial Facility just outside of the Forest Zone and ride the now unlocked elevator to the top.",
+          collapse: "",
+        },
+        {
+          number: "31",
+          name: "The Mercenary",
+          note: "",
+          info: "Complete 80% of all side quests available in the game.",
+          collapse: "",
+        },
+        {
+          number: "32",
+          name: "A New Battle Begins",
+          note: "",
+          info: "Finish Route B and achieve Ending B.",
+          collapse: "",
+        },
+        {
+          number: "33",
+          name: "Final Wish",
+          note: "",
+          info: "Watch 2B die.",
+          collapse: "",
+        },
+        {
+          number: "34",
+          name: "Treacherous Blade",
+          note: "",
+          info: "Gain control over A2 for the first time.",
+          collapse: "",
+        },
+        {
+          number: "35",
+          name: "The Power of Hate",
+          note: "",
+          info: "Destroy 50 Machine Lifeforms with Berserk Mode while playing as A2.",
+          collapse: "",
+        },
+        {
+          number: "36",
+          name: "Weapons Maniac",
+          note: "",
+          info: "Obtain all of the Pod Programs.",
+          collapse: "",
+        },
+        {
+          number: "37",
+          name: "Farewell, Pascal",
+          note: "",
+          info: "Grant Pascal's final request and wipe his memory after the fight at the Abandoned Factory.",
+          collapse: "",
+        },
+        {
+          number: "38",
+          name: "Destruction Is My Job",
+          note: "",
+          info: "Collect 80% of the Unit Data category under Intel.",
+          collapse: "",
+        },
+        {
+          number: "39",
+          name: "Information Master",
+          note: "",
+          info: "Collect 80% of materials in the Archives category under Intel.",
+          collapse: "",
+        },
+        {
+          number: "40",
+          name: "Justice",
+          note: "",
+          info: "Beat all of the bosses in the Resource Recovery Units.",
+          collapse: "",
+        },
+        {
+          number: "41",
+          name: "Crime and Punishment",
+          note: "",
+          info: "Enter The Tower after Devola and Popola sacrific themselves to help you.",
+          collapse: "",
+        },
+        {
+          number: "42",
+          name: "Supreme Support Weapons",
+          note: "",
+          info: "Upgrade all three of the Pods to max level.",
+          collapse: "",
+        },
+        {
+          number: "43",
+          name: "Naughty Children",
+          note: "",
+          info: "Fight Emil for the first time as a secret boss after going to his home deep in the cave system under the City Ruins and stealing an item from a locked box there.",
+          collapse: "",
+        },
+        {
+          number: "44",
+          name: "Inorganic Blade",
+          note: "",
+          info: "Upgrade all of the weapons in the game to max level.",
+          collapse: "",
+        },
+        {
+          number: "45",
+          name: "Beautiful World",
+          note: "",
+          info: "Finish Routes C and D, achieving Ending C by selecting A2 when prompted to after her fight with 9S.",
+          collapse: "",
+        },
+        {
+          number: "46",
+          name: "Leaving for the New World",
+          note: "",
+          info: "Finish Routes C and D, achieving Ending D by selecting 9S when prompted to after his fight with A2.",
+          collapse: "",
+        },
+        {
+          number: "47",
+          name: "The Minds That Emerged",
+          note: "",
+          info: "Achieve Ending E after obtaining Endings C or D by answering Yes to both of the first two questions you are prompted with. You will be taken to a bullet hell section that will get gradually harder that you will have to die a roughly 5 times and not give up to, at which point you will be asked if you would like help and you will answer Yes, gaining a number of other cursors around yours that will help you complete the section. Once you have finished this section, you will obtain Ending E and will be prompted further to sacrifice your saved data to help others struggling, which you are free to answer according to your preferences.",
+          collapse: "",
+        },
+        {
+          number: "48",
+          name: "Transcendent Being",
+          note: "",
+          info: "Achieve Endings A-Z not including the DLC Ending ◬.",
+          collapse: "",
+        },
+        {
+          number: "49",
+          name: "Final Words",
+          note: "",
+          info: "Complete all of the other achievements.",
+          collapse: "",
+        },
+      ]);
+
+      //Initialize OverlayScrollbars
+      var OverlayScrollbars = OverlayScrollbarsGlobal.OverlayScrollbars;
+      document.querySelectorAll("[data-overlayscrollbars-initialize]").forEach((elm) => {
+        OverlayScrollbars(elm, {
+          overflow: {
+            x: "hidden",
+            y: "scroll",
+          },
+          scrollbars: {
+            theme: "os-theme-automata",
+            visibility: "visible",
+            autoHide: "never",
+            dragScroll: true,
+            clickScroll: true,
+          },
+        });
+      });
+
+      //Navigation Horizontal Scroller
+      const navScrollRight = document.getElementById("nav-scroll-right");
+      const navScrollLeft = document.getElementById("nav-scroll-left");
+      var mainNav = document.getElementById("main-nav");
+
+      navScrollRight.onmousedown = function () {
+        mainNav.scrollLeft += 50;
+      };
+
+      navScrollLeft.onmousedown = function () {
+        mainNav.scrollLeft -= 50;
+      };
+
+      //Save and Load Checkboxes
+      var checkboxValues = JSON.parse(localStorage.getItem("checkboxValues")) || {},
+        $checkboxes = $(".form-check-input");
+
+      $checkboxes.on("change", function () {
+        $checkboxes.each(function () {
+          checkboxValues[this.id] = this.checked;
+        });
+
+        localStorage.setItem("checkboxValues", JSON.stringify(checkboxValues));
+      });
+
+      $.each(checkboxValues, function (key, value) {
+        $("#" + key).prop("checked", value);
+      });
+
+      //Save and Load Text Input
+      const editables = document.querySelectorAll("[contenteditable]");
+
+      editables.forEach((el) => {
+        el.addEventListener("blur", () => {
+          localStorage.setItem("dataStorage-" + el.id, el.innerHTML);
+        });
+      });
+
+      for (var key in localStorage) {
+        if (key.includes("dataStorage-")) {
+          const id = key.replace("dataStorage-", "");
+          document.querySelector("#" + id).innerHTML = localStorage.getItem(key);
+        }
+      }
+    </script>
+  </body>
+</html>
