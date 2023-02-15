@@ -354,7 +354,7 @@
 
       const itemList2 = document.querySelector("#list-group-2 > .list-group");
       ((data) => {
-        const chunk = data.map((item) => `<li class="list-group-item list-group-item-decoration ${item.collapsed}" data-bs-toggle="collapse" data-bs-target="#list-item-${item.number}" aria-expanded="${item.expanded}" aria-controls="list-item-${item.number}"><span class="text-truncate">${item.name}</span></li>`).join("");
+        const chunk = data.map((item) => `<li class="list-group-item position-relative"><input class="form-check-input me-2" type="checkbox" value="" id="list-checkbox-${item.number}" /><span class="text-truncate ${item.collapsed}" data-bs-toggle="collapse" data-bs-target="#list-item-${item.number}" aria-expanded="${item.expanded}" aria-controls="list-item-${item.number}">${item.name}</span></li>`).join("");
         const range = document.createRange();
         range.selectNode(itemList2);
         const fragment = range.createContextualFragment(chunk);
@@ -430,7 +430,7 @@
 
       const itemList3 = document.querySelector("#list-group-3 > .list-group");
       ((data) => {
-        const chunk = data.map((item) => `<li class="list-group-item list-group-item-decoration ${item.collapsed}" data-bs-toggle="collapse" data-bs-target="#list-item-${item.number}" aria-expanded="${item.expanded}" aria-controls="list-item-${item.number}"><span class="text-truncate">${item.name}</span></li>`).join("");
+        const chunk = data.map((item) => `<li class="list-group-item position-relative"><input class="form-check-input me-2" type="checkbox" value="" id="list-checkbox-${item.number}" /><span class="text-truncate ${item.collapsed}" data-bs-toggle="collapse" data-bs-target="#list-item-${item.number}" aria-expanded="${item.expanded}" aria-controls="list-item-${item.number}">${item.name}</span></li>`).join("");
         const range = document.createRange();
         range.selectNode(itemList3);
         const fragment = range.createContextualFragment(chunk);
@@ -500,7 +500,7 @@
 
       const itemList4 = document.querySelector("#list-group-4 > .list-group");
       ((data) => {
-        const chunk = data.map((item) => `<li class="list-group-item list-group-item-decoration ${item.collapsed}" data-bs-toggle="collapse" data-bs-target="#list-item-${item.number}" aria-expanded="${item.expanded}" aria-controls="list-item-${item.number}"><span class="text-truncate">${item.name}</span></li>`).join("");
+        const chunk = data.map((item) => `<li class="list-group-item position-relative"><input class="form-check-input me-2" type="checkbox" value="" id="list-checkbox-${item.number}" /><span class="text-truncate ${item.collapsed}" data-bs-toggle="collapse" data-bs-target="#list-item-${item.number}" aria-expanded="${item.expanded}" aria-controls="list-item-${item.number}">${item.name}</span></li>`).join("");
         const range = document.createRange();
         range.selectNode(itemList4);
         const fragment = range.createContextualFragment(chunk);
@@ -540,7 +540,7 @@
 
       const itemList5 = document.querySelector("#list-group-5 > .list-group");
       ((data) => {
-        const chunk = data.map((item) => `<li class="list-group-item list-group-item-decoration ${item.collapsed}" data-bs-toggle="collapse" data-bs-target="#list-item-${item.number}" aria-expanded="${item.expanded}" aria-controls="list-item-${item.number}"><span class="text-truncate">${item.name}</span></li>`).join("");
+        const chunk = data.map((item) => `<li class="list-group-item position-relative"><input class="form-check-input me-2" type="checkbox" value="" id="list-checkbox-${item.number}" /><span class="text-truncate ${item.collapsed}" data-bs-toggle="collapse" data-bs-target="#list-item-${item.number}" aria-expanded="${item.expanded}" aria-controls="list-item-${item.number}">${item.name}</span></li>`).join("");
         const range = document.createRange();
         range.selectNode(itemList5);
         const fragment = range.createContextualFragment(chunk);
