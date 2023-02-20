@@ -398,7 +398,10 @@
                   <i class="card-decoration-top"></i>
                   <div class="card-text h-100 position-relative" data-overlayscrollbars-initialize>
                     <div class="pe-3 position-absolute w-100">
-                      <div class="fst-italic mb-3">Level <div contenteditable="true" class="d-inline">???</div></div>
+                      <div class="${item.visibility} input-group d-inline-flex flex-nowrap mb-3 w-auto">
+                        <span class="input-group-text bg-transparent border-0 fst-italic p-0">Level</span>
+                        <div class="form-control bg-transparent border-0 fst-italic ps-2 pe-0 py-0" id="${item.number}-level" contenteditable="true">1</div>
+                      </div>
                       <p data-note="${item.note}">${item.info}</p>
                     </div>
                   </div>
@@ -734,20 +737,27 @@
         $("#" + key).prop("checked", value);
       });
 
-      //Save and Load Text Input
-      const editables = document.querySelectorAll("[contenteditable]");
+      //Save and Load Contenteditable DIVs
+      var editables = document.querySelectorAll(".form-control");
 
-      editables.forEach((el) => {
-        el.addEventListener("blur", () => {
-          localStorage.setItem("dataStorage-" + el.id, el.innerHTML);
-        });
-      });
-
-      for (var key in localStorage) {
-        if (key.includes("dataStorage-")) {
-          const id = key.replace("dataStorage-", "");
-          document.querySelector("#" + id).innerHTML = localStorage.getItem(key);
+      for (var i = 0; i < editables.length; ++i) {
+        var prop = "weapon-levels" + i;
+        if (localStorage[prop]) {
+          editables[i].textContent = localStorage[prop];
         }
+        addKeyup(editables[i], prop);
+      }
+
+      function addKeyup(elem, prop) {
+        elem.addEventListener("keyup", function () {
+          store(prop, this.textContent);
+        });
+      }
+
+      function store(prop, val) {
+        localStorage[prop] = val;
+        console.log(prop);
+        console.log(localStorage[prop]);
       }
     </script>
   </body>

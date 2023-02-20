@@ -838,22 +838,6 @@
       $.each(checkboxValues, function (key, value) {
         $("#" + key).prop("checked", value);
       });
-
-      //Save and Load Text Input
-      const editables = document.querySelectorAll("[contenteditable]");
-
-      editables.forEach((el) => {
-        el.addEventListener("blur", () => {
-          localStorage.setItem("dataStorage-" + el.id, el.innerHTML);
-        });
-      });
-
-      for (var key in localStorage) {
-        if (key.includes("dataStorage-")) {
-          const id = key.replace("dataStorage-", "");
-          document.querySelector("#" + id).innerHTML = localStorage.getItem(key);
-        }
-      }
     </script>
   </body>
 </html>

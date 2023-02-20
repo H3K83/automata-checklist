@@ -237,12 +237,6 @@
           expanded: "false",
         },
         {
-          number: "item-21",
-          name: "Choice Sachet",
-          collapsed: "collapsed",
-          expanded: "false",
-        },
-        {
           number: "item-22",
           name: "Cosmetics",
           collapsed: "collapsed",
@@ -841,13 +835,6 @@
           collapse: "",
         },
         {
-          number: "item-21",
-          name: "Choice Sachet",
-          note: "",
-          info: "No information available.",
-          collapse: "",
-        },
-        {
           number: "item-22",
           name: "Cosmetics",
           note: "",
@@ -1398,22 +1385,6 @@
       $.each(checkboxValues, function (key, value) {
         $("#" + key).prop("checked", value);
       });
-
-      //Save and Load Text Input
-      const editables = document.querySelectorAll("[contenteditable]");
-
-      editables.forEach((el) => {
-        el.addEventListener("blur", () => {
-          localStorage.setItem("dataStorage-" + el.id, el.innerHTML);
-        });
-      });
-
-      for (var key in localStorage) {
-        if (key.includes("dataStorage-")) {
-          const id = key.replace("dataStorage-", "");
-          document.querySelector("#" + id).innerHTML = localStorage.getItem(key);
-        }
-      }
     </script>
   </body>
 </html>
