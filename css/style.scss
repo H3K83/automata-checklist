@@ -710,24 +710,22 @@ a {
         margin-bottom: 1px;
         width: calc(100% - $spacer * 0.25);
       }
-    }
-
-    & > span {
-      &:not(.collapsed) {
+  
+      &:not(.collapsed) > span {
         color: $accent;
       }
     }
-  }
 
-  & > span[data-bs-toggle] {
-    color: $light;
-    flex-grow: 1;
-    line-height: 1.51;
-    position: relative;
-    bottom: 0.5px;
-
-    &:not(.collapsed) {
-      color: $accent;
+    & > span[data-bs-toggle] {
+      color: $light;
+      flex-grow: 1;
+      line-height: 1.51;
+      position: relative;
+      bottom: 0.5px;
+  
+      &:not(.collapsed) {
+        color: $accent;
+      }
     }
   }
 
@@ -763,11 +761,11 @@ a {
         background-color: $light !important;
       }
 
-    & > span {
-      &:not(.collapsed) {
-        color: $light;
+      & > span {
+        &:not(.collapsed) {
+          color: $light;
+        }
       }
-    }
 
       & > .dropdown-menu {
         background-image: url("../images/bkg-grid_light.png");

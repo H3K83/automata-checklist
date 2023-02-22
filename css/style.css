@@ -11396,17 +11396,17 @@ a:link, a:visited, a:hover, a:active {
   margin-bottom: 1px;
   width: calc(100% - 0.25rem);
 }
-.list-group > .list-group-item > span:not(.collapsed) {
+.list-group > .list-group-item.list-group-item-decoration:not(.collapsed) > span {
   color: #ff7154;
 }
-.list-group > span[data-bs-toggle] {
+.list-group > .list-group-item > span[data-bs-toggle] {
   color: #e5dfda;
   flex-grow: 1;
   line-height: 1.51;
   position: relative;
   bottom: 0.5px;
 }
-.list-group > span[data-bs-toggle]:not(.collapsed) {
+.list-group > .list-group-item > span[data-bs-toggle]:not(.collapsed) {
   color: #ff7154;
 }
 .list-group.list-group-standalone {
