@@ -254,7 +254,7 @@ $dropdown-bg: $secondary;
 $dropdown-border-color: transparent;
 $dropdown-border-radius: $border-radius;
 $dropdown-border-width: 0;
-$dropdown-divider-bg: $light;
+$dropdown-divider-bg: $tertiary;
 $dropdown-divider-margin-y: $spacer * 0.25;
 $dropdown-box-shadow: $box-shadow;
 
@@ -265,7 +265,7 @@ $dropdown-link-hover-bg: $tertiary;
 $dropdown-link-active-color: $dropdown-link-color;
 $dropdown-link-active-bg: $dropdown-link-hover-bg;
 
-$dropdown-link-disabled-color: $gray-500;
+$dropdown-link-disabled-color: rgba($dropdown-color, 0.5);
 
 $dropdown-item-padding-y: $spacer * 0.25;
 $dropdown-item-padding-x: $spacer;

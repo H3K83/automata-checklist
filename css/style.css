@@ -3220,7 +3220,7 @@ textarea.form-control-lg {
   --bs-dropdown-border-radius: 0.375rem;
   --bs-dropdown-border-width: 0;
   --bs-dropdown-inner-border-radius: calc(0.375rem - var(--bs-border-width));
-  --bs-dropdown-divider-bg: #e5dfda;
+  --bs-dropdown-divider-bg: #8c8885;
   --bs-dropdown-divider-margin-y: 0.25rem;
   --bs-dropdown-box-shadow: 0 0.5rem 1rem rgba(var(--bs-body-color-rgb), 0.15);
   --bs-dropdown-link-color: #e5dfda;
@@ -3228,7 +3228,7 @@ textarea.form-control-lg {
   --bs-dropdown-link-hover-bg: #8c8885;
   --bs-dropdown-link-active-color: #e5dfda;
   --bs-dropdown-link-active-bg: #8c8885;
-  --bs-dropdown-link-disabled-color: #adb5bd;
+  --bs-dropdown-link-disabled-color: rgba(229, 223, 218, 0.5);
   --bs-dropdown-item-padding-x: 1rem;
   --bs-dropdown-item-padding-y: 0.25rem;
   --bs-dropdown-header-color: #e5dfda;

@@ -58,12 +58,12 @@
                     <div class="card-text">
                       <div class="pe-3 w-100">
                         <ul class="list-group list-group-flush list-group-standalone" id="settings-menus">
-                          <li class="list-group-item list-group-item-decoration collapsed d-none" data-bs-toggle="collapse" data-bs-target="#theme-menu" aria-expanded="false" aria-controls="theme-menu">
+                          <li class="list-group-item list-group-item-decoration collapsed" data-bs-toggle="collapse" data-bs-target="#theme-menu" aria-expanded="false" aria-controls="theme-menu">
                             <span class="text-truncate">Theme</span>
                             <ul class="dropdown-menu collapse" id="theme-menu" data-bs-parent="#settings-menus">
                               <li><hr class="dropdown-divider" /></li>
-                              <li><a class="dropdown-item">Light</a></li>
-                              <li><a class="dropdown-item">Dark</a></li>
+                              <li><a class="dropdown-item disabled">Light</a></li>
+                              <li><a class="dropdown-item disabled">Dark</a></li>
                               <li><hr class="dropdown-divider" /></li>
                             </ul>
                           </li>
@@ -71,9 +71,9 @@
                             <span class="text-truncate">User Data</span>
                             <ul class="dropdown-menu collapse" id="user-data-menu" data-bs-parent="#settings-menus">
                               <li><hr class="dropdown-divider" /></li>
-                              <li><button class="dropdown-item" id="export-user-data" onclick="exportUserData()">Export Data</button><a class="d-none" id="export-user-data-link"></a></li>
-                              <li><label class="dropdown-item" id="import-user-data-link" for="import-user-data">Import Data</label><input class="d-none" type="file" id="import-user-data"></li>
-                              <li><a class="dropdown-item" id="clear-user-data-link">Clear Data</a></li>
+                              <li><button class="dropdown-item disabled" id="export-user-data" onclick="exportUserData()">Export Data</button><a class="d-none" id="export-user-data-link"></a></li>
+                              <li><label class="dropdown-item disabled" id="import-user-data-link" for="import-user-data">Import Data</label><input class="d-none" type="file" id="import-user-data"></li>
+                              <li><a class="dropdown-item disabled" id="clear-user-data-link">Clear Data</a></li>
                               <li><hr class="dropdown-divider" /></li>
                             </ul>
                           </li>
