@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html class="h-100" lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NieR: Automata Checklist ver0.2a - Settings</title>
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+  <body class="h-100 overflow-hidden">
+    <div class="h-100 d-flex flex-column">
+      <nav class="navbar border-bottom border-tertiary border-decoration-bottom pt-4 pb-3">
+        <div class="container-fluid px-4 px-md-5">
+          <div class="border-decoration-start d-flex flex-row w-100">
+            <button type="button" id="nav-scroll-left" class="btn btn-scroll d-xl-none me-2 me-xxl-4"><i class="button-scroll-icon"></i></button>
+            <div class="overflow-x-auto overflow-y-hidden" id="main-nav">
+              <ul class="navbar-nav flex-row">
+                <li class="nav-item pe-2 pe-xxl-4">
+                  <a class="nav-link" href="index.html"><span>Home</span></a>
+                </li>
+                <li class="nav-item pe-2 pe-xxl-4">
+                  <a class="nav-link" href="quests.html"><span>Quests</span></a>
+                </li>
+                <li class="nav-item pe-2 pe-xxl-4">
+                  <a class="nav-link" href="items.html"><span>Items</span></a>
+                </li>
+                <li class="nav-item pe-2 pe-xxl-4">
+                  <a class="nav-link" href="weapons.html"><span>Weapons</span></a>
+                </li>
+                <li class="nav-item pe-2 pe-xxl-4">
+                  <a class="nav-link" href="skills.html"><span>Skills</span></a>
+                </li>
+                <li class="nav-item pe-2 pe-xxl-4">
+                  <a class="nav-link" href="intel.html"><span>Intel</span></a>
+                </li>
+                <li class="nav-item pe-2 pe-xxl-4">
+                  <a class="nav-link" href="endings.html"><span>Endings</span></a>
+                </li>
+                <li class="nav-item pe-2 pe-xxl-4">
+                  <a class="nav-link" href="achievements.html"><span>Achievements</span></a>
+                </li>
+                <li class="nav-item pe-2 pe-xxl-4">
+                  <a class="nav-link active" href="settings.html"><span>Settings</span></a>
+                </li>
+              </ul>
+            </div>
+            <button type="button" id="nav-scroll-right" class="btn btn-scroll d-xl-none me-2 me-xxl-4"><i class="button-scroll-icon rotated"></i></button>
+          </div>
+        </div>
+      </nav>
+      <div class="container-fluid d-flex flex-column flex-grow-1 px-4 px-md-5 py-5 pt-4 pb-0">
+        <h1 class="fw-light pb-4 text-shadow">NieR: Automata Checklist ver0.2a<span class="fs-5 ms-3">- Settings</span></h1>
+        <div class="container-fluid flex-grow-1 p-0">
+          <div class="row gx-5 gy-4 h-100 position-relative">
+            <div class="col-12 col-lg-6 col-xxl-4 d-flex align-items-center">
+              <div class="border-decoration-start w-100">
+                <div class="card card-transparent">
+                  <div class="card-body py-0">
+                    <div class="card-text">
+                      <div class="pe-3 w-100">
+                        <ul class="list-group list-group-flush list-group-standalone" id="settings-menus">
+                          <li class="list-group-item list-group-item-decoration collapsed d-none" data-bs-toggle="collapse" data-bs-target="#theme-menu" aria-expanded="false" aria-controls="theme-menu">
+                            <span class="text-truncate">Theme</span>
+                            <ul class="dropdown-menu collapse" id="theme-menu" data-bs-parent="#settings-menus">
+                              <li><hr class="dropdown-divider" /></li>
+                              <li><a class="dropdown-item">Light</a></li>
+                              <li><a class="dropdown-item">Dark</a></li>
+                              <li><hr class="dropdown-divider" /></li>
+                            </ul>
+                          </li>
+                          <li class="list-group-item list-group-item-decoration collapsed mb-0" data-bs-toggle="collapse" data-bs-target="#user-data-menu" aria-expanded="false" aria-controls="user-data-menu">
+                            <span class="text-truncate">User Data</span>
+                            <ul class="dropdown-menu collapse" id="user-data-menu" data-bs-parent="#settings-menus">
+                              <li><hr class="dropdown-divider" /></li>
+                              <li><button class="dropdown-item" id="export-user-data" onclick="exportUserData()">Export Data</button><a class="d-none" id="export-user-data-link"></a></li>
+                              <li><label class="dropdown-item" id="import-user-data-link" for="import-user-data">Import Data</label><input class="d-none" type="file" id="import-user-data"></li>
+                              <li><a class="dropdown-item" id="clear-user-data-link">Clear Data</a></li>
+                              <li><hr class="dropdown-divider" /></li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-lg-6 col-xxl-4" id="list-info"></div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid border-bottom border-tertiary border-decoration-bottom mb-5 p-0 pb-3">
+        <div class="row g-0 px-4 px-md-5">
+          <div class="col-12">
+            <div class="card box-highlight m-0" id="footer">
+              <div class="card-body">
+                <p class="card-text">NieR is a registered trademark of SQUARE ENIX CO., LTD. This website was designed by <a href="https://github.com/H3K83" target="_blank" title="Hekate">Hekate</a> and is licensed under a Creative Commons <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-No Derivatives 4.0 International">BY-NC-ND 4.0 International License</a>.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/overlayscrollbars.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script>
+      //Primary Menu Color Toggle
+      var collapseElementList = [].slice.call(document.querySelectorAll(".dropdown-menu"));
+      var collapseList = collapseElementList.map(function (collapseEl) {
+        collapseEl.addEventListener("show.bs.collapse", function () {
+          var collapseElementParent = document.getElementById("settings-menus");
+          collapseElementParent.classList.add("show");
+        });
+        collapseEl.addEventListener("shown.bs.collapse", function () {
+          var collapseElementParent = document.getElementById("settings-menus");
+          collapseElementParent.classList.add("show");
+        });
+        collapseEl.addEventListener("hidden.bs.collapse", function () {
+          var collapseElementParent = document.getElementById("settings-menus");
+          collapseElementParent.classList.remove("show");
+        });
+      });
+
+      //Initialize OverlayScrollbars
+      var OverlayScrollbars = OverlayScrollbarsGlobal.OverlayScrollbars;
+      document.querySelectorAll("[data-overlayscrollbars-initialize]").forEach((elm) => {
+        OverlayScrollbars(elm, {
+          overflow: {
+            x: "hidden",
+            y: "scroll",
+          },
+          scrollbars: {
+            theme: "os-theme-automata",
+            visibility: "visible",
+            autoHide: "never",
+            dragScroll: true,
+            clickScroll: true,
+          },
+        });
+      });
+
+      //Navigation Horizontal Scroller
+      const navScrollRight = document.getElementById("nav-scroll-right");
+      const navScrollLeft = document.getElementById("nav-scroll-left");
+      var mainNav = document.getElementById("main-nav");
+
+      navScrollRight.onmousedown = function () {
+        mainNav.scrollLeft += 50;
+      };
+
+      navScrollLeft.onmousedown = function () {
+        mainNav.scrollLeft -= 50;
+      };
+
+      //Export localStorage to file
+      function exportUserData() {
+        const getDate = () => {
+          const newDate = new Date();
+          const year = newDate.getFullYear();
+          const month = newDate.getMonth() + 1;
+          const d = newDate.getDate();
+          return `${month.toString().padStart(2, "0")}${d.toString().padStart(2, "0")}${year}`;
+        };
+
+        var userData = JSON.stringify(localStorage, null, 4);
+        var exportLink = document.getElementById("export-user-data-link");
+        var exportData = new Blob([userData], { type: "octet/stream" });
+        exportName = "localstorage_" + getDate() + "_backup.json";
+        exportURL = window.URL.createObjectURL(exportData);
+        exportLink.setAttribute("href", exportURL);
+        exportLink.setAttribute("download", exportName);
+        exportLink.click();
+      }
+
+      //Import localStorage from  file
+      document.querySelector("#import-user-data-link").addEventListener("click", () => {
+        let importData = new importData();
+        importData.onload = function () {
+          let parsedData = JSON.parse(importData.result);
+          dataSave(parsedData);
+        };
+        importData.readAsText(document.querySelector("#import-user-data").files[0]);
+      });
+      function dataSave(json) {
+        console.log(json);
+      }
+
+      //Clear localStorage
+      document.querySelector("#clear-user-data-link").addEventListener("click", () => {
+        var themeMode = localStorage.getItem("theme");
+        localStorage.clear();
+        localStorage.setItem("theme", themeMode);
+      });
+    </script>
+  </body>
+</html>
