@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="h-100" lang="en" data-bs-theme="dark">
+<html class="h-100" lang="en" data-bs-theme="light">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -7,8 +7,8 @@
     <link href="css/style.css" rel="stylesheet" />
   </head>
   <body class="h-100 overflow-hidden">
-    <div class="h-100 d-flex flex-column">
-      <nav class="navbar border-bottom border-tertiary border-decoration-bottom pt-4 pb-3">
+    <div class="h-100 d-flex flex-column" id="page-wrapper">
+      <nav class="navbar border-decoration-bottom pt-4 pb-3">
         <div class="container-fluid px-4 px-md-5">
           <div class="border-decoration-start d-flex flex-row w-100">
             <button type="button" id="nav-scroll-left" class="btn btn-scroll d-xl-none me-2 me-xxl-4"><i class="button-scroll-icon"></i></button>
@@ -48,12 +48,12 @@
         </div>
       </nav>
       <div class="container-fluid d-flex flex-column flex-grow-1 px-4 px-md-5 py-5 pt-4 pb-0">
-        <h1 class="fw-light pb-4 text-shadow">NieR: Automata Checklist ver0.2a<span class="fs-5 ms-3">- Weapons</span></h1>
+        <h1 class="fw-light pb-4 text-shadow" id="site-name">NieR: Automata Checklist ver0.2a<span>- Weapons</span></h1>
         <div class="container-fluid flex-grow-1 p-0">
           <div class="row gx-5 gy-4 h-100 position-relative">
             <div class="col-12 col-lg-6 col-xxl-4">
               <div class="border-decoration-start h-100">
-                <div class="card box-highlight h-100">
+                <div class="card box-highlight h-100 position-relative show" id="list-collections">
                   <div class="card-body ps-0">
                     <i class="card-decoration-top"></i>
                     <div class="card-text h-100 position-relative" data-overlayscrollbars-initialize>
@@ -70,7 +70,7 @@
           </div>
         </div>
       </div>
-      <div class="container-fluid border-bottom border-tertiary border-decoration-bottom mb-5 p-0 pb-3">
+      <div class="container-fluid border-decoration-bottom mb-5 p-0 pb-3" id="footer-wrapper">
         <div class="row g-0 px-4 px-md-5">
           <div class="col-12">
             <div class="card box-highlight m-0" id="footer">
@@ -402,7 +402,7 @@
                         <span class="input-group-text bg-transparent border-0 fst-italic p-0">Level</span>
                         <div class="form-control bg-transparent border-0 fst-italic ps-2 pe-0 py-0" id="${item.number}-level" contenteditable="true">1</div>
                       </div>
-                      <p data-note="${item.note}">${item.info}</p>
+                      <p class="mb-0">${item.info}<em>${item.note}</em></p>
                     </div>
                   </div>
                   <i class="card-decoration-bottom"></i>
@@ -690,6 +690,21 @@
         },
       ]);
 
+      //Collapse Class Toggle
+      var collapseElementList = [].slice.call(document.querySelectorAll(".card.collapse"));
+      var collapseList = collapseElementList.map(function (collapseEl) {
+        var collapseClassToggle = document.getElementById("list-collections");
+        collapseEl.addEventListener("show.bs.collapse", function () {
+          collapseClassToggle.classList.add("show");
+        });
+        collapseEl.addEventListener("shown.bs.collapse", function () {
+          collapseClassToggle.classList.add("show");
+        });
+        collapseEl.addEventListener("hidden.bs.collapse", function () {
+          collapseClassToggle.classList.remove("show");
+        });
+      });
+
       //Initialize OverlayScrollbars
       var OverlayScrollbars = OverlayScrollbarsGlobal.OverlayScrollbars;
       document.querySelectorAll("[data-overlayscrollbars-initialize]").forEach((elm) => {
@@ -719,6 +734,29 @@
 
       navScrollLeft.onmousedown = function () {
         mainNav.scrollLeft -= 50;
+      };
+
+      //Auto-Scroll to Active Menu Item
+      window.onload = function () {
+        document.getElementById("main-nav").scrollLeft = 0;
+        var navLinks = document.getElementsByClassName("nav-link");
+        var navBtn = document.getElementById("nav-scroll-left");
+        for (var i = 0; i < navLinks.length; i++) {
+          if (navLinks[i].classList.contains("active")) {
+            document.getElementById("main-nav").scrollLeft = navLinks[i].offsetLeft - navBtn.offsetWidth * 2.65;
+          }
+        }
+      };
+
+      window.onresize = function () {
+        document.getElementById("main-nav").scrollLeft = 0;
+        var navLinks = document.getElementsByClassName("nav-link");
+        var navBtn = document.getElementById("nav-scroll-left");
+        for (var i = 0; i < navLinks.length; i++) {
+          if (navLinks[i].classList.contains("active")) {
+            document.getElementById("main-nav").scrollLeft = navLinks[i].offsetLeft - navBtn.offsetWidth * 2.65;
+          }
+        }
       };
 
       //Save and Load Checkboxes
@@ -759,6 +797,37 @@
         console.log(prop);
         console.log(localStorage[prop]);
       }
+
+      //Toggle Color Modes
+      var darkMode = false;
+
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        darkMode = true;
+      }
+
+      if (localStorage.getItem("theme") === "dark") {
+        darkMode = true;
+      } else if (localStorage.getItem("theme") === "light") {
+        darkMode = false;
+      }
+
+      if (darkMode) {
+        document.documentElement.setAttribute("data-bs-theme", "dark");
+      } else {
+        document.documentElement.setAttribute("data-bs-theme", "light");
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("light-mode-toggle").addEventListener("click", () => {
+          document.documentElement.setAttribute("data-bs-theme", "light");
+          localStorage.setItem("theme", "light");
+        });
+
+        document.getElementById("dark-mode-toggle").addEventListener("click", () => {
+          document.documentElement.setAttribute("data-bs-theme", "dark");
+          localStorage.setItem("theme", "dark");
+        });
+      });
     </script>
   </body>
 </html>

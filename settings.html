@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="h-100" lang="en" data-bs-theme="dark">
+<html class="h-100" lang="en" data-bs-theme="light">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -7,8 +7,8 @@
     <link href="css/style.css" rel="stylesheet" />
   </head>
   <body class="h-100 overflow-hidden">
-    <div class="h-100 d-flex flex-column">
-      <nav class="navbar border-bottom border-tertiary border-decoration-bottom pt-4 pb-3">
+    <div class="h-100 d-flex flex-column" id="page-wrapper">
+      <nav class="navbar border-decoration-bottom pt-4 pb-3">
         <div class="container-fluid px-4 px-md-5">
           <div class="border-decoration-start d-flex flex-row w-100">
             <button type="button" id="nav-scroll-left" class="btn btn-scroll d-xl-none me-2 me-xxl-4"><i class="button-scroll-icon"></i></button>
@@ -48,7 +48,7 @@
         </div>
       </nav>
       <div class="container-fluid d-flex flex-column flex-grow-1 px-4 px-md-5 py-5 pt-4 pb-0">
-        <h1 class="fw-light pb-4 text-shadow">NieR: Automata Checklist ver0.2a<span class="fs-5 ms-3">- Settings</span></h1>
+        <h1 class="fw-light pb-4 text-shadow" id="site-name">NieR: Automata Checklist ver0.2a<span>- Settings</span></h1>
         <div class="container-fluid flex-grow-1 p-0">
           <div class="row gx-5 gy-4 h-100 position-relative">
             <div class="col-12 col-lg-6 col-xxl-4 d-flex align-items-center">
@@ -60,19 +60,19 @@
                         <ul class="list-group list-group-flush list-group-standalone" id="settings-menus">
                           <li class="list-group-item list-group-item-decoration collapsed" data-bs-toggle="collapse" data-bs-target="#theme-menu" aria-expanded="false" aria-controls="theme-menu">
                             <span class="text-truncate">Theme</span>
-                            <ul class="dropdown-menu collapse" id="theme-menu" data-bs-parent="#settings-menus">
+                            <ul class="dropdown-menu collapse box-highlight" id="theme-menu" data-bs-parent="#settings-menus">
                               <li><hr class="dropdown-divider" /></li>
-                              <li><a class="dropdown-item disabled">Light</a></li>
-                              <li><a class="dropdown-item disabled">Dark</a></li>
+                              <li><a class="dropdown-item" id="light-mode-toggle">Light</a></li>
+                              <li><a class="dropdown-item" id="dark-mode-toggle">Dark</a></li>
                               <li><hr class="dropdown-divider" /></li>
                             </ul>
                           </li>
                           <li class="list-group-item list-group-item-decoration collapsed mb-0" data-bs-toggle="collapse" data-bs-target="#user-data-menu" aria-expanded="false" aria-controls="user-data-menu">
                             <span class="text-truncate">User Data</span>
-                            <ul class="dropdown-menu collapse" id="user-data-menu" data-bs-parent="#settings-menus">
+                            <ul class="dropdown-menu collapse box-highlight" id="user-data-menu" data-bs-parent="#settings-menus">
                               <li><hr class="dropdown-divider" /></li>
                               <li><button class="dropdown-item disabled" id="export-user-data" onclick="exportUserData()">Export Data</button><a class="d-none" id="export-user-data-link"></a></li>
-                              <li><label class="dropdown-item disabled" id="import-user-data-link" for="import-user-data">Import Data</label><input class="d-none" type="file" id="import-user-data"></li>
+                              <li><label class="dropdown-item disabled" id="import-user-data-link" for="import-user-data">Import Data</label><input class="d-none" type="file" id="import-user-data" /></li>
                               <li><a class="dropdown-item disabled" id="clear-user-data-link">Clear Data</a></li>
                               <li><hr class="dropdown-divider" /></li>
                             </ul>
@@ -88,7 +88,7 @@
           </div>
         </div>
       </div>
-      <div class="container-fluid border-bottom border-tertiary border-decoration-bottom mb-5 p-0 pb-3">
+      <div class="container-fluid border-decoration-bottom mb-5 p-0 pb-3" id="footer-wrapper">
         <div class="row g-0 px-4 px-md-5">
           <div class="col-12">
             <div class="card box-highlight m-0" id="footer">
@@ -104,20 +104,18 @@
     <script src="js/overlayscrollbars.min.js"></script>
     <script src="js/jquery.min.js"></script>
     <script>
-      //Primary Menu Color Toggle
+      //Collapse Class Toggle
       var collapseElementList = [].slice.call(document.querySelectorAll(".dropdown-menu"));
       var collapseList = collapseElementList.map(function (collapseEl) {
+        var collapseClassToggle = document.getElementById("settings-menus");
         collapseEl.addEventListener("show.bs.collapse", function () {
-          var collapseElementParent = document.getElementById("settings-menus");
-          collapseElementParent.classList.add("show");
+          collapseClassToggle.classList.add("show");
         });
         collapseEl.addEventListener("shown.bs.collapse", function () {
-          var collapseElementParent = document.getElementById("settings-menus");
-          collapseElementParent.classList.add("show");
+          collapseClassToggle.classList.add("show");
         });
         collapseEl.addEventListener("hidden.bs.collapse", function () {
-          var collapseElementParent = document.getElementById("settings-menus");
-          collapseElementParent.classList.remove("show");
+          collapseClassToggle.classList.remove("show");
         });
       });
 
@@ -152,6 +150,29 @@
         mainNav.scrollLeft -= 50;
       };
 
+      //Auto-Scroll to Active Menu Item
+      window.onload = function () {
+        document.getElementById("main-nav").scrollLeft = 0;
+        var navLinks = document.getElementsByClassName("nav-link");
+        var navBtn = document.getElementById("nav-scroll-left");
+        for (var i = 0; i < navLinks.length; i++) {
+          if (navLinks[i].classList.contains("active")) {
+            document.getElementById("main-nav").scrollLeft = navLinks[i].offsetLeft - navBtn.offsetWidth * 2.65;
+          }
+        }
+      };
+
+      window.onresize = function () {
+        document.getElementById("main-nav").scrollLeft = 0;
+        var navLinks = document.getElementsByClassName("nav-link");
+        var navBtn = document.getElementById("nav-scroll-left");
+        for (var i = 0; i < navLinks.length; i++) {
+          if (navLinks[i].classList.contains("active")) {
+            document.getElementById("main-nav").scrollLeft = navLinks[i].offsetLeft - navBtn.offsetWidth * 2.65;
+          }
+        }
+      };
+
       //Export localStorage to file
       function exportUserData() {
         const getDate = () => {
@@ -172,7 +193,7 @@
         exportLink.click();
       }
 
-      //Import localStorage from  file
+      //Import localStorage from file
       document.querySelector("#import-user-data-link").addEventListener("click", () => {
         let importData = new importData();
         importData.onload = function () {
@@ -190,6 +211,37 @@
         var themeMode = localStorage.getItem("theme");
         localStorage.clear();
         localStorage.setItem("theme", themeMode);
+      });
+
+      //Toggle Color Modes
+      var darkMode = false;
+
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        darkMode = true;
+      }
+
+      if (localStorage.getItem("theme") === "dark") {
+        darkMode = true;
+      } else if (localStorage.getItem("theme") === "light") {
+        darkMode = false;
+      }
+
+      if (darkMode) {
+        document.documentElement.setAttribute("data-bs-theme", "dark");
+      } else {
+        document.documentElement.setAttribute("data-bs-theme", "light");
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("light-mode-toggle").addEventListener("click", () => {
+          document.documentElement.setAttribute("data-bs-theme", "light");
+          localStorage.setItem("theme", "light");
+        });
+
+        document.getElementById("dark-mode-toggle").addEventListener("click", () => {
+          document.documentElement.setAttribute("data-bs-theme", "dark");
+          localStorage.setItem("theme", "dark");
+        });
       });
     </script>
   </body>
